@@ -41,6 +41,9 @@ private:
 	MyVector3 vectorArray[8];
 	//displacement vector
 	MyVector3 displacemtVec{ 0.01f,0.01f,0 };
+
+	//translation vector
+	MyVector3 translationArray[8];
 	GLuint index;
 	Clock clock;
 	Time elapsed;

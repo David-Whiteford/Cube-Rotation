@@ -140,8 +140,20 @@ void Game::update()
 		{
 			rotationAngle -= 360.0f;
 		}
-	}
+	}	
 	keyPresses();
+
+
+	vectorArray[0] = vectorArray[0] + translationArray[0];
+	vectorArray[1] = vectorArray[1] + translationArray[1];
+	vectorArray[2] = vectorArray[2] + translationArray[2];
+	vectorArray[3] = vectorArray[3] + translationArray[3];
+	vectorArray[4] = vectorArray[4] + translationArray[4];
+	vectorArray[5] = vectorArray[5] + translationArray[5];
+	vectorArray[6] = vectorArray[6] + translationArray[6];
+	vectorArray[7] = vectorArray[7] + translationArray[7];
+
+	
 	glNewList(index, GL_COMPILE);
 	glBegin(GL_QUADS);
 	{
@@ -246,14 +258,15 @@ void Game::keyPresses()
 			vectorArray[i] = (MyMatrix3::rotationZ(-0.001) * vectorArray[i]);
 		}
 	}
-
-
-
+	/// <summary>
+	/// key presses for the translation
+	/// </summary>
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i].y = vectorArray[i].y + displacemtVec.y;
+			/*translationArray[i] = (MyMatrix3::translation(MyVector3{ 0,-0.001, 0 }) * translationArray[i];*/
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
@@ -261,6 +274,7 @@ void Game::keyPresses()
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i].y = vectorArray[i].y - displacemtVec.y;
+		/*	translationArray[i] = (MyMatrix3::translation(MyVector3{ 0, 0.001, 0 }) * translationArray[i];*/
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -268,6 +282,7 @@ void Game::keyPresses()
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i].x = vectorArray[i].x - displacemtVec.x;
+		/*	translationArray[i] = (MyMatrix3::translation(MyVector3{ -0.001, 0, 0 }) * translationArray[i];*/
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
@@ -275,23 +290,24 @@ void Game::keyPresses()
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i].x = vectorArray[i].x + displacemtVec.x;
+		/*	translationArray[i] = (MyMatrix3::translation(MyVector3{ 0.001, 0, 0 }) * translationArray[i];*/
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			(MyMatrix3::scale(-0.001));
+			
+			translationArray[i] = (MyMatrix3::scale(0.001) * translationArray[i]);
 		}
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
 	{
 		for (int i = 0; i < 8; i++)
 		{
-			(MyMatrix3::scale(0.000001));
+			translationArray[i] = (MyMatrix3::scale(0.99) * translationArray[i]);
 		}
 	}
-
 
 
 }
