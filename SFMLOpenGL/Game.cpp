@@ -17,6 +17,7 @@ Game::Game() : window(VideoMode(800, 600), "OpenGL Cube")
 	vectorArray[5] = v6;
 	vectorArray[6] = v7;
 	vectorArray[7] = v8;
+	glScalef(0.9f, 0.9f, 1.0f);
 
 }
 
@@ -52,7 +53,10 @@ void Game::initialize()
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	{
+		glLoadIdentity();
+	}
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
 	glMatrixMode(GL_MODELVIEW);
 
@@ -198,7 +202,8 @@ void Game::draw()
 	cout << "Drawing Cube " << endl;
 	
 	//glRotatef(rotationAngle, 0, 0, 1); // Rotates the camera on Y Axis
-
+	
+	/*glScalef(0.9f, 0.9f, 1.0f);*/
 	glCallList(1);
 
 	window.display();
@@ -239,5 +244,53 @@ void Game::keyPresses()
 			vectorArray[i] = (MyMatrix3::rotationZ(-0.001) * vectorArray[i]);
 		}
 	}
+
+
+
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		/*vectorArray[i] = (MyMatrix3::translation(vectorArray[i]) * vectorArray[i]);*/
+	//	}
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		
+	//	}
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		
+	//	}
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		
+	//	}
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		vectorArray[i] = (MyMatrix3::scale(-0.001) * vectorArray[i]);
+	//	}
+	//}
+	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	//{
+	//	for (int i = 0; i < 8; i++)
+	//	{
+	//		vectorArray[i] = (MyMatrix3::scale(0.000001) * vectorArray[i]);
+	//	}
+	//}
+
+
+
 }
 
