@@ -37,8 +37,10 @@ private:
 	MyVector3 v7{ -1.0f, -1.0f, -5.0f };
 	MyVector3 v8{ 1.0f, -1.0f, -5.0f };
 
-	//vector array to store vectors
+	//vector array to store sbove vectors
 	MyVector3 vectorArray[8];
+	//displacement vector
+	MyVector3 displacemtVec{ 0.01f,0.01f,0 };
 	GLuint index;
 	Clock clock;
 	Time elapsed;

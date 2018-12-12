@@ -53,12 +53,11 @@ void Game::initialize()
 
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glMatrixMode(GL_PROJECTION);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-	{
-		glLoadIdentity();
-	}
+	
 	gluPerspective(45.0, window.getSize().x / window.getSize().y, 1.0, 500.0);
 	glMatrixMode(GL_MODELVIEW);
+
+	glTranslatef(0, 0, -10);
 
 	// glNewList(index, GL_COMPILE);
 	// Creates a new Display List
@@ -67,6 +66,9 @@ void Game::initialize()
 	glNewList(index, GL_COMPILE);
 	glBegin(GL_QUADS);
 	{
+		/// <summary>
+		/// open gl quads points for each square of the cube
+		/// </summary>
 		//Front Face
 		glColor3f(0.0f, 0.0f, 1.0f);
 		glVertex3f(vectorArray[4].x, vectorArray[4].y, vectorArray[4].z);
@@ -104,7 +106,6 @@ void Game::initialize()
 		glVertex3f(vectorArray[0].x, vectorArray[0].y, vectorArray[0].z);
 
 		//bottom face
-
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(vectorArray[6].x, vectorArray[6].y, vectorArray[6].z);
 		glVertex3f(vectorArray[7].x, vectorArray[7].y, vectorArray[7].z);
@@ -181,7 +182,6 @@ void Game::update()
 		glVertex3f(vectorArray[0].x, vectorArray[0].y, vectorArray[0].z);
 
 		//bottom face
-
 		glColor3f(1.0f, 0.0f, 0.0f);
 		glVertex3f(vectorArray[6].x, vectorArray[6].y, vectorArray[6].z);
 		glVertex3f(vectorArray[7].x, vectorArray[7].y, vectorArray[7].z);
@@ -201,9 +201,7 @@ void Game::draw()
 
 	cout << "Drawing Cube " << endl;
 	
-	//glRotatef(rotationAngle, 0, 0, 1); // Rotates the camera on Y Axis
-	
-	/*glScalef(0.9f, 0.9f, 1.0f);*/
+
 	glCallList(1);
 
 	window.display();
@@ -216,6 +214,10 @@ void Game::unload()
 }
 void Game::keyPresses()
 {
+
+	/// <summary>
+	/// Key presses for the rotation of the cube
+	/// </summary>
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
 	{
 		for (int i = 0; i < 8; i++)
@@ -223,21 +225,21 @@ void Game::keyPresses()
 			vectorArray[i] = (MyMatrix3::rotationX(0.001) * vectorArray[i]);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
 	{
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i] = (MyMatrix3::rotationX(-0.001) * vectorArray[i]);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 	{
 		for (int i = 0; i < 8; i++)
 		{
 			vectorArray[i] = (MyMatrix3::rotationZ(0.001) * vectorArray[i]);
 		}
 	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
 	{
 		for (int i = 0; i < 8; i++)
 		{
@@ -247,48 +249,48 @@ void Game::keyPresses()
 
 
 
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		/*vectorArray[i] = (MyMatrix3::translation(vectorArray[i]) * vectorArray[i]);*/
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		vectorArray[i] = (MyMatrix3::scale(-0.001) * vectorArray[i]);
-	//	}
-	//}
-	//if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-	//{
-	//	for (int i = 0; i < 8; i++)
-	//	{
-	//		vectorArray[i] = (MyMatrix3::scale(0.000001) * vectorArray[i]);
-	//	}
-	//}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			vectorArray[i].y = vectorArray[i].y + displacemtVec.y;
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			vectorArray[i].y = vectorArray[i].y - displacemtVec.y;
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			vectorArray[i].x = vectorArray[i].x - displacemtVec.x;
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			vectorArray[i].x = vectorArray[i].x + displacemtVec.x;
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			(MyMatrix3::scale(-0.001));
+		}
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
+	{
+		for (int i = 0; i < 8; i++)
+		{
+			(MyMatrix3::scale(0.000001));
+		}
+	}
 
 
 
