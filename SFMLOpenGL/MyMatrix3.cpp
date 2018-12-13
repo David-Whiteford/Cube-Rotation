@@ -92,11 +92,7 @@ bool MyMatrix3::operator!=(const MyMatrix3 t_other) const
 		m_31 != t_other.m_31 || m_32 != t_other.m_32 || m_13 != t_other.m_33 };
 	return result;
 }
-//MyVector3::MyVector3 operator *(const MyVector3 t_vector)const
-//{
-//	//reurns new vector from multipying them by scalar for double
-//	return MyVector3(x * t_vector, y * t_vector, z * t_vector);
-//}
+
 
 
 MyMatrix3 MyMatrix3::operator +(const MyMatrix3 t_other) const
@@ -280,15 +276,17 @@ MyMatrix3 MyMatrix3::scale(const double t_scalingfactor)
 	MyMatrix3 scale;
 
 	//assigns values to n
-	double n_11 = 1;
-	double n_12 = t_scalingfactor;
+	double n_11 = t_scalingfactor;
+	double n_12 = 0;
 	double n_13 = 0;
+
 	double n_21 = 0;
 	double n_22 = t_scalingfactor;
 	double n_23 = 0;
+
 	double n_31 = 0;
-	double n_32 = t_scalingfactor;
-	double n_33 = 1;
+	double n_32 = 0;
+	double n_33 = t_scalingfactor;;
 	//makes scale matrix equal to n values and returns
 	scale = { n_11, n_12, n_13, n_21, n_22, n_23, n_31, n_32, n_33 };
 	return scale;

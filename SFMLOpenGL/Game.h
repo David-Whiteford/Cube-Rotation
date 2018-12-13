@@ -27,15 +27,15 @@ private:
 	void unload();
 	void keyPresses();
 	//8 vectors
-	MyVector3 v1{ 1.0f, 1.0f, -15.0f };
-	MyVector3 v2{ -1.0f, 1.0f, -15.0f };
-	MyVector3 v3{ -1.0f, -1.0f, -15.0f };
-	MyVector3 v4{ 1.0f, -1.0f, -15.0f };
+	MyVector3 v1{ 1.0f, 1.0f, -1.0};
+	MyVector3 v2{ -1.0f, 1.0f, -1.0 };
+	MyVector3 v3{ -1.0f, -1.0f, -1.0 };
+	MyVector3 v4{ 1.0f, -1.0f, -1.0f };
 
-	MyVector3 v5{ 1.0f, 1.0f, -5.0f };
-	MyVector3 v6{ -1.0f, 1.0f, -5.0f };
-	MyVector3 v7{ -1.0f, -1.0f, -5.0f };
-	MyVector3 v8{ 1.0f, -1.0f, -5.0f };
+	MyVector3 v5{ 1.0f, 1.0f, 1.0f };
+	MyVector3 v6{ -1.0f, 1.0f, 1.0f };
+	MyVector3 v7{ -1.0f, -1.0f, 1.0f };
+	MyVector3 v8{ 1.0f, -1.0f, 1.0f };
 
 	//vector array to store sbove vectors
 	MyVector3 vectorArray[8];
@@ -44,6 +44,7 @@ private:
 
 	//translation vector
 	MyVector3 translationArray[8];
+	MyVector3 result[8];
 	GLuint index;
 	Clock clock;
 	Time elapsed;
